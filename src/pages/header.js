@@ -14,7 +14,7 @@ export default class Header extends React.Component {
     
      constructor(props) {
          super(props);
-         props.history.push("/home");
+         //props.history.push("/home");
          
          this.handleLogoPress = this.handleLogoPress.bind(this);
          this.handleLink = this.handleLink.bind(this);
@@ -34,7 +34,7 @@ export default class Header extends React.Component {
             <div id="examples" className="container">
                 <Navbar inverse fluid collapseOnSelect>
                     <Navbar.Header>
-                        <Navbar.Brand onClick={this.handleLogoPress}>React Bootstrap Examples</Navbar.Brand>
+                        <Navbar.Brand onClick={()=>this.handleLogoPress()}>React Bootstrap Examples</Navbar.Brand>
                         <Navbar.Toggle />
                     </Navbar.Header>
                     <Navbar.Collapse>

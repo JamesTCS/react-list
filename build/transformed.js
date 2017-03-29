@@ -18349,9 +18349,9 @@ var Header = function (_React$Component) {
     function Header(props) {
         _classCallCheck(this, Header);
 
-        var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
+        //props.history.push("/home");
 
-        props.history.push("/home");
+        var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
 
         _this.handleLogoPress = _this.handleLogoPress.bind(_this);
         _this.handleLink = _this.handleLink.bind(_this);
@@ -18385,7 +18385,9 @@ var Header = function (_React$Component) {
                         null,
                         _react2.default.createElement(
                             _reactBootstrap.Navbar.Brand,
-                            { onClick: this.handleLogoPress },
+                            { onClick: function onClick() {
+                                    return _this2.handleLogoPress();
+                                } },
                             'React Bootstrap Examples'
                         ),
                         _react2.default.createElement(_reactBootstrap.Navbar.Toggle, null)
@@ -18777,6 +18779,8 @@ var Playground = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             return _react2.default.createElement(
                 'div',
                 { id: 'playground page' },
@@ -18815,7 +18819,9 @@ var Playground = function (_React$Component) {
                             { md: 4 },
                             _react2.default.createElement(
                                 _reactBootstrap.Button,
-                                { bsStyle: 'primary', bsSize: 'large', onClick: this.toggleModal },
+                                { bsStyle: 'primary', bsSize: 'large', onClick: function onClick() {
+                                        return _this2.toggleModal();
+                                    } },
                                 'Test Button 3'
                             )
                         )
@@ -18913,7 +18919,9 @@ var Playground = function (_React$Component) {
                                 ' ',
                                 this.state.systemShow && _react2.default.createElement(
                                     _reactBootstrap.Button,
-                                    { onClick: this.handleError },
+                                    { onClick: function onClick() {
+                                            return _this2.handleError();
+                                        } },
                                     'Fix it!'
                                 )
                             )
@@ -18961,7 +18969,9 @@ var Playground = function (_React$Component) {
                             { md: 2 },
                             _react2.default.createElement(
                                 _reactBootstrap.Button,
-                                { bsStyle: 'success', onClick: this.handleAdd },
+                                { bsStyle: 'success', onClick: function onClick() {
+                                        return _this2.handleAdd();
+                                    } },
                                 'Add'
                             )
                         ),
@@ -18970,7 +18980,9 @@ var Playground = function (_React$Component) {
                             { md: 2 },
                             _react2.default.createElement(
                                 _reactBootstrap.Button,
-                                { bsStyle: 'danger', onClick: this.handleSubtract },
+                                { bsStyle: 'danger', onClick: function onClick() {
+                                        return _this2.handleSubtract();
+                                    } },
                                 'Subtract'
                             )
                         )

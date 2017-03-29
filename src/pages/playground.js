@@ -75,7 +75,7 @@ export default class Playground extends React.Component {
                             <Button bsStyle="default" bsSize="small">Test Button 2</Button>
                         </Col>
                         <Col md={4}>
-                            <Button bsStyle="primary" bsSize="large" onClick={this.toggleModal}>Test Button 3</Button>
+                            <Button bsStyle="primary" bsSize="large" onClick={()=>this.toggleModal()}>Test Button 3</Button>
                         </Col>
                     </Row>
                 
@@ -121,7 +121,7 @@ export default class Playground extends React.Component {
                             }
                         </Col>
                         <Col md={6}>
-                            <Alert bsStyle={this.state.status}>{this.state.systemMessage} {this.state.systemShow && <Button onClick={this.handleError}>Fix it!</Button>}</Alert>
+                            <Alert bsStyle={this.state.status}>{this.state.systemMessage} {this.state.systemShow && <Button onClick={()=>this.handleError()}>Fix it!</Button>}</Alert>
                         </Col>
                     </Row>
                     <Row>
@@ -145,10 +145,10 @@ export default class Playground extends React.Component {
                             </form>
                         </Col>
                         <Col md={2}>
-                            <Button bsStyle="success" onClick={this.handleAdd}>Add</Button>
+                            <Button bsStyle="success" onClick={()=>this.handleAdd()}>Add</Button>
                         </Col>
                         <Col md={2}>
-                            <Button bsStyle="danger" onClick={this.handleSubtract}>Subtract</Button>
+                            <Button bsStyle="danger" onClick={()=>this.handleSubtract()}>Subtract</Button>
                         </Col>
                     </Row>
                     
