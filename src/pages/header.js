@@ -1,13 +1,17 @@
 import React from 'react';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
-import {LinkContainer} from 'react-router-bootstrap';
+//import {LinkContainer} from 'react-router-bootstrap';
 import {Route, Link, NavLink} from 'react-router-dom';
 
-import Home from './home';
-import Playground from './playground';
-import NewPage from './new_page';
-import FarPage from './far_page';
-import DropPage from './drop_page';
+//import Lists from '../components/lists';
+
+import Home from '../pages/home';
+import Playground from '../pages/playground';
+import ManageLists from '../pages/manage_lists';
+import DropPage from '../pages/drop_page';
+import ViewList from '../pages/view_list';
+
+
 
 
 export default class Header extends React.Component {
@@ -34,13 +38,13 @@ export default class Header extends React.Component {
             <div id="examples" className="container">
                 <Navbar inverse fluid collapseOnSelect>
                     <Navbar.Header>
-                        <Navbar.Brand onClick={()=>this.handleLogoPress()}>React Bootstrap Examples</Navbar.Brand>
+                        <Navbar.Brand onClick={()=>this.handleLogoPress()}>List Maker</Navbar.Brand>
                         <Navbar.Toggle />
                     </Navbar.Header>
                     <Navbar.Collapse>
                         <Nav>
-                            <NavItem eventKey={2} onClick={()=>this.handleLink("new_page")}>New Page</NavItem>
-                            <NavItem eventKey={2} onClick={()=>this.handleLink("playground")}>Playground</NavItem>
+                            <NavItem eventKey={2} onClick={()=>this.handleLink("manage_lists")}>Manage Lists</NavItem>
+                            <NavItem eventKey={2} onClick={()=>this.handleLink("far_page")}>Far Page</NavItem>
                             <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
                               <MenuItem eventKey={3.1} onClick={()=>this.handleLink("drop_page")}>Drop Down Link</MenuItem>
                               <MenuItem eventKey={3.2}>Another action</MenuItem>
@@ -50,16 +54,18 @@ export default class Header extends React.Component {
                             </NavDropdown>
                         </Nav>
                         <Nav pullRight>
+                            <NavItem eventKey={2} onClick={()=>this.handleLink("playground")}>Playground</NavItem>
                             
-                            <NavItem eventKey={2} onClick={()=>this.handleLink("far_page")}>Far Page</NavItem>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
-                <Route path="/home" exact component={Home}/>
+                {/*<Route path="/" component={Lists}/> */}
+                <Route path="/home" component={Home}/>  
                 <Route path="/playground" component={Playground}/>
-                <Route path="/new_page" component={NewPage}/>
-                <Route path="/far_page" component={FarPage}/>
+                <Route path="/manage_lists" component={ManageLists}/>
                 <Route path="/drop_page" component={DropPage}/>
+                <Route path="/view_list/:list" component={ViewList}/>
+                
             </div>    
         );
     }

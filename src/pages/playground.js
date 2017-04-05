@@ -23,6 +23,10 @@ export default class Playground extends React.Component {
         this.toggleModal = this.toggleModal.bind(this);
     }
     
+    getInitialState() {
+        
+    }
+    
      handleAlertDismiss() {
         this.setState({alertVisible: false});
     }
