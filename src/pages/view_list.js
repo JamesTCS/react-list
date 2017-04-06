@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, ListGroup, ListGroupItem} from 'react-bootstrap';
-import ListsStore from '../models/lists.js';
+import ListsStore from '../stores/lists_store.js';
 
 export default class ViewList extends React.Component {
     constructor(props) {
@@ -12,14 +12,22 @@ export default class ViewList extends React.Component {
         
         this.handleBack = this.handleBack.bind(this);
         this.handleToggle = this.handleToggle.bind(this);
+        this.getListItems = this.getListItems.bind(this);
     }
     
     componentWillMount() {
-        ListsStore.on("change", () => {
-            this.setState( {
-                listItems: ListsStore.getListItems(this.props.match.params.list)
-            });
-        })
+        ListsStore.on("change", this.getListItems);
+    }
+    
+    componentWillUnmount() {
+        ListsStore.removeListener("change", this.getListItems);
+    }
+    
+    getListItems() {
+        this.setState( {
+            listItems: ListsStore.getListItems(this.props.match.params.list)
+        });
+        
     }
     
     handleBack() {

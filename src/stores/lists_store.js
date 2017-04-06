@@ -1,4 +1,5 @@
 import {EventEmitter} from 'events';
+import Dispatcher from '../dispatcher';
 
 class ListsStore extends EventEmitter {
     constructor() {
@@ -71,8 +72,8 @@ class ListsStore extends EventEmitter {
         delete this.lists[name];
     }
     
-    getLists() {
-        return;
+    getList(list) {
+        return this.lists[list].concat([]);
     }
     
     getListItems(list) {
@@ -83,8 +84,36 @@ class ListsStore extends EventEmitter {
         this.lists[list][item].strike = !this.lists[list][item].strike;
         this.emit("change");
     }
+    
+    addItem(list, item, bold) {
+        this.lists[list].push({
+            name: item,
+            strike: false,
+            bold
+        });
+        this.emit("change");
+    }
+    
+    removeItem(list, index) {
+        this.lists[list].splice(index, 1);
+        this.emit("change");
+    }
+    
+    handleDispatches(action) {
+        console.log("dispatch recieved", action);
+        switch (action.type) {
+            case "ADD_LIST_ITEM":
+                this.addItem(action.list, action.item, action.bold);
+                break;
+            case "DELETE_LIST_ITEM":
+                this.removeItem(action.list, action.index);
+                break;
+        }
+    }
 }
 
 const listsStore = new ListsStore;
+
+Dispatcher.register(listsStore.handleDispatches.bind(listsStore));
 
 export default listsStore;

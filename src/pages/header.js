@@ -10,27 +10,32 @@ import Playground from '../pages/playground';
 import ManageLists from '../pages/manage_lists';
 import DropPage from '../pages/drop_page';
 import ViewList from '../pages/view_list';
+import EditList from '../pages/edit_list';
 
 
 
 
 export default class Header extends React.Component {
     
-     constructor(props) {
-         super(props);
-         //props.history.push("/home");
+    constructor(props) {
+        super(props);
+        //props.history.push("/home");
          
-         this.handleLogoPress = this.handleLogoPress.bind(this);
-         this.handleLink = this.handleLink.bind(this);
+        this.handleLogoPress = this.handleLogoPress.bind(this);
+        this.handleLink = this.handleLink.bind(this);
         
-     }
+    }
+     
+    componentWillMount() {
+        this.props.history.push("/home");
+    }
     
     handleLogoPress() {
         this.props.history.push("/home");
     }
     
     handleLink(path) {
-        this.props.history.push(path);
+        this.props.history.push("/"+path);
     }
     
     render() {
@@ -38,7 +43,7 @@ export default class Header extends React.Component {
             <div id="examples" className="container">
                 <Navbar inverse fluid collapseOnSelect>
                     <Navbar.Header>
-                        <Navbar.Brand onClick={()=>this.handleLogoPress()}>List Maker</Navbar.Brand>
+                        <Navbar.Brand style={{cursor: "pointer"}} onClick={()=>this.handleLogoPress()}>List Maker</Navbar.Brand>
                         <Navbar.Toggle />
                     </Navbar.Header>
                     <Navbar.Collapse>
@@ -65,7 +70,7 @@ export default class Header extends React.Component {
                 <Route path="/manage_lists" component={ManageLists}/>
                 <Route path="/drop_page" component={DropPage}/>
                 <Route path="/view_list/:list" component={ViewList}/>
-                
+                <Route path="/edit_list/:list" component={EditList}/>
             </div>    
         );
     }

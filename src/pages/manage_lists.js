@@ -1,6 +1,6 @@
 import React from 'react';
 import {FormGroup, FormControl, ControlLabel, Button, ButtonToolbar, ListGroup, ListGroupItem, Glyphicon} from 'react-bootstrap';
-import ListStore from '../models/lists';
+import ListStore from '../stores/lists_store';
 
 export default class ManageLists extends React.Component {
     constructor(props) {
@@ -14,6 +14,7 @@ export default class ManageLists extends React.Component {
         this.handleRemove = this.handleRemove.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
     }
     
     handleRemove(event) {
@@ -33,7 +34,9 @@ export default class ManageLists extends React.Component {
         });
     }
     
-    
+    handleEdit(event) {
+        this.props.history.push("/edit_list/"+event.currentTarget.dataset.item);
+    }
     
     render() {
         return (
@@ -49,7 +52,7 @@ export default class ManageLists extends React.Component {
                     {Object.keys(this.lists).map( (item, index) => (
                         <ListGroupItem key={item} onClick={this.handleClick}>
                             <ButtonToolbar className="pull-right">
-                                <Button bsStyle="info"><span><Glyphicon glyph="list" /></span></Button>
+                                <Button bsStyle="info" data-item={item} onClick={this.handleEdit} ><span><Glyphicon glyph="list" /></span></Button>
                                 <Button bsStyle="danger" onClick={this.handleRemove} data-listItem={item}><span><Glyphicon glyph="remove" /></span></Button>
                             </ButtonToolbar>
                             <h4>{item}</h4>

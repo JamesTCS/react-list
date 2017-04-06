@@ -1,6 +1,6 @@
 import React from 'react';
 import {ListGroup, ListGroupItem} from 'react-bootstrap';
-import ListStore from '../models/lists';
+import ListStore from '../stores/lists_store';
 
 export default class Home extends React.Component {
     constructor(props) {
